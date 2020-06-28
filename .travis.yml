@@ -30,5 +30,10 @@ notifications:
       - stan-buildbot@googlegroups.com
     on_success: change
     on_failure: always
-install: source continuous_integration/install.sh
+install: 
+  - wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+  - sudo apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main"
+  - sudo apt-get update
+  - sudo apt-get install -y clang-6.0
+  - source continuous_integration/install.sh
 script: bash continuous_integration/test_script.sh --exclude="$TESTS_EXCLUDE_RE"
