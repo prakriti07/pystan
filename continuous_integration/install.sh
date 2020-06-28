@@ -20,9 +20,8 @@ conda update --yes --quiet conda
 PYTHON_VERSION_MAJOR=${TRAVIS_PYTHON_VERSION:0:1}
 ENV_NAME="${TRAVIS_OS_NAME}_${CC}_py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}"
 if [[ $PYTHON_VERSION_MAJOR == '2' ]]; then conda create --quiet --yes -n test-environment python=$TRAVIS_PYTHON_VERSION; pip Cython=0.22 numpy=1.10.1 scipy nose matplotlib pandas; fi
-if [[ $PYTHON_VERSION_MAJOR == '3' ]]; then conda create --quiet --yes -n test-environment python=$TRAVIS_PYTHON_VERSION; fi
+if [[ $PYTHON_VERSION_MAJOR == '3' ]]; then conda create --quiet --yes -n test-environment python=$TRAVIS_PYTHON_VERSION Cython numpy scipy nose matplotlib pandas; fi
 source activate test-environment
-pip Cython numpy scipy nose matplotlib pandas
 python -c "import numpy"
 
 # run quietly due to travis ci's log limit
