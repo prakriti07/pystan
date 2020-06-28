@@ -13,7 +13,7 @@ set -e
 if [[ $TRAVIS_OS_NAME == 'linux' ]]; then wget https://github.com/conda-forge/miniforge/releases/download/4.8.2-1/Miniforge3-4.8.2-1-Linux-aarch64.sh -O miniconda.sh; fi
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then wget https://repo.continuum.io/miniconda/Miniconda3-4.2.12-MacOSX-x86_64.sh -O miniconda.sh; fi
 chmod +x miniconda.sh
-./miniconda.sh -b
+./miniconda.sh -b -p $HOME/miniconda3
 export PATH=$HOME/miniconda3/bin:$PATH
 # Update conda itself
 conda update --yes --quiet conda
